@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Verify news trustworthiness with AI-powered blockchain technology. Combat misinformation with decentralized fact-checking.">
+    <title>NewsVerify - AI-Powered News Verification Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">NewsVerify</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="#" class="btn-secondary">Sign In</a>
+                <a href="#" class="btn-primary">Get Started</a>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="badge">
+                    <svg class="badge-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 10V3L4 14H11L11 21L20 10L13 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Powered by AI & Blockchain</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Combat Misinformation with
+                    <span class="gradient-text">AI-Powered Verification</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Instantly verify news authenticity using decentralized AI consensus. 
+                    Get real-time fact-checking from multiple trusted sources on the blockchain.
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="#" class="btn-primary btn-large">
+                        Start Verifying Free
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#how-it-works" class="btn-secondary btn-large">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7519 11.1679L11.5547 9.03647C10.8901 8.59343 10 9.06982 10 9.86852V14.1315C10 14.9302 10.8901 15.4066 11.5547 14.9635L14.7519 12.8321C15.3457 12.4362 15.3457 11.5638 14.7519 11.1679Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Watch Demo
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">News Verified</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">98.7%</div>
+                        <div class="stat-label">Accuracy Rate</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="glass-card hero-card">
+                    <div class="card-header">
+                        <div class="card-title">News Verification</div>
+                        <div class="status-badge status-verified">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Verified
+                        </div>
+                    </div>
+                    
+                    <div class="verification-content">
+                        <div class="news-snippet">
+                            "Breaking: New renewable energy breakthrough announced..."
+                        </div>
+                        
+                        <div class="verification-metrics">
+                            <div class="metric">
+                                <div class="metric-label">Consensus Score</div>
+                                <div class="metric-value">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 94%"></div>
+                                    </div>
+                                    <span>94%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="metric">
+                                <div class="metric-label">Sources Checked</div>
+                                <div class="metric-value">
+                                    <div class="source-icons">
+                                        <div class="source-icon"></div>
+                                        <div class="source-icon"></div>
+                                        <div class="source-icon"></div>
+                                        <div class="source-icon"></div>
+                                        <div class="source-icon"></div>
+                                    </div>
+                                    <span>12 sources</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="verification-result">
+                            <svg class="result-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div class="result-text">
+                                <div class="result-title">Highly Credible</div>
+                                <div class="result-description">Verified by AI consensus across multiple trusted sources</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Why Choose <span class="gradient-text">NewsVerify</span>
+                </h2>
+                <p class="section-description">
+                    Leverage cutting-edge AI and blockchain technology to fight misinformation
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.663 17H4C2.89543 17 2 16.1046 2 15V5C2 3.89543 2.89543 3 4 3H20C21.1046 3 22 3.89543 22 5V15C22 16.1046 21.1046 17 20 17H14.337M9.663 17L12 21M9.663 17H14.337M14.337 17L12 21M12 21H8M12 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Real-Time Verification</h3>
+                    <p class="feature-description">
+                        Get instant fact-checking results as you browse. Our AI analyzes news in milliseconds across multiple sources.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.5 14.25V11.625C19.5 9.76104 17.989 8.25 16.125 8.25H14.625C14.0037 8.25 13.5 7.74632 13.5 7.125V5.625C13.5 3.76104 11.989 2.25 10.125 2.25H8.25M8.25 15H15.75M8.25 18H12M10.5 2.25H5.625C5.00368 2.25 4.5 2.75368 4.5 3.375V20.625C4.5 21.2463 5.00368 21.75 5.625 21.75H18.375C18.9963 21.75 19.5 21.2463 19.5 20.625V11.25C19.5 6.27944 15.4706 2.25 10.5 2.25Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Decentralized Consensus</h3>
+                    <p class="feature-description">
+                        No single point of failure. Multiple AI validators reach consensus on the blockchain for unbiased results.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12.75L11.25 15L15 9.75M21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Transparent Scoring</h3>
+                    <p class="feature-description">
+                        See exactly how credibility scores are calculated. Full transparency into source analysis and AI reasoning.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Historical Tracking</h3>
+                    <p class="feature-description">
+                        Track how news stories evolve over time. See verification history and detect narrative manipulation.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.75 13.5L14.25 2.99999L20.25 9L9.75 19.5L3.75 13.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14.25 3L20.25 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.75 13.5L9.75 19.5L3 21L3.75 13.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Browser Extension</h3>
+                    <p class="feature-description">
+                        Verify news without leaving your browser. One-click verification on any article, social media post, or webpage.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.45801 12C3.73201 7.943 7.52301 5 12 5C16.478 5 20.268 7.943 21.542 12C20.268 16.057 16.478 19 12 19C7.52301 19 3.73201 16.057 2.45801 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">
+                        Your reading habits stay private. Zero tracking, no data selling. Verification happens on-chain without compromising privacy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    How It <span class="gradient-text">Works</span>
+                </h2>
+                <p class="section-description">
+                    Three simple steps to verify any news article
+                </p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-card glass-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Submit News</h3>
+                        <p class="step-description">
+                            Paste a URL, upload text, or use our browser extension to submit any news article for verification.
+                        </p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 8H17M7 12H17M7 16H13M6 20H18C18.5304 20 19.0391 19.7893 19.4142 19.4142C19.7893 19.0391 20 18.5304 20 18V6C20 5.46957 19.7893 4.96086 19.4142 4.58579C19.0391 4.21071 18.5304 4 18 4H6C5.46957 4 4.96086 4.21071 4.58579 4.58579C4.21071 4.96086 4 5.46957 4 6V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="step-connector"></div>
+                
+                <div class="step-card glass-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">AI Analysis</h3>
+                        <p class="step-description">
+                            Multiple AI validators analyze the content, cross-reference sources, and reach consensus on credibility.
+                        </p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.75 17L9 20L8 21H16L15 20L14.25 17M3 13H21M5 17H19C20.1046 17 21 16.1046 21 15V5C21 3.89543 20.1046 3 19 3H5C3.89543 3 3 3.89543 3 5V15C3 16.1046 3.89543 17 5 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="step-connector"></div>
+                
+                <div class="step-card glass-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Get Results</h3>
+                        <p class="step-description">
+                            Receive a detailed credibility report with transparency into sources, reasoning, and confidence scores.
+                        </p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Simple, <span class="gradient-text">Transparent Pricing</span>
+                </h2>
+                <p class="section-description">
+                    Choose the plan that fits your needs
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card glass-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Free</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">$0</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>10 verifications per day</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Basic credibility scores</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Browser extension access</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Community support</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-secondary btn-full">Get Started Free</a>
+                </div>
+                
+                <div class="pricing-card glass-card pricing-featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Pro</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">$19</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Unlimited verifications</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Detailed analysis reports</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Historical tracking</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>API access</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-primary btn-full">Start Pro Trial</a>
+                </div>
+                
+                <div class="pricing-card glass-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">Custom</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Everything in Pro</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Custom AI models</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>White-label solution</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Dedicated support team</span>
+                        </li>
+                        <li class="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>SLA guarantee</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-secondary btn-full">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    Frequently Asked <span class="gradient-text">Questions</span>
+                </h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item glass-card">
+                    <button class="faq-question">
+                        <span>How accurate is the verification?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our AI consensus model achieves 98.7% accuracy by cross-referencing multiple trusted sources and using decentralized validation. Each verification is performed by multiple independent AI validators that must reach consensus.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glass-card">
+                    <button class="faq-question">
+                        <span>What makes NewsVerify different from fact-checking websites?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Unlike traditional fact-checkers, NewsVerify is decentralized, automated, and instant. We use blockchain technology to ensure no single entity controls the verification process, and AI to provide real-time results instead of waiting days for human fact-checkers.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glass-card">
+                    <button class="faq-question">
+                        <span>How does the blockchain integration work?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We use GenLayer's intelligent contract platform to run AI validators on-chain. Each verification creates an immutable record, and multiple validators must reach consensus before a credibility score is assigned. This ensures transparency and prevents manipulation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glass-card">
+                    <button class="faq-question">
+                        <span>Can I verify content in languages other than English?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! NewsVerify supports over 50 languages. Our AI models are trained on multilingual datasets and can verify news in most major languages with the same level of accuracy.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glass-card">
+                    <button class="faq-question">
+                        <span>Is my data private and secure?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. We don't track your reading habits or sell your data. Verification happens on-chain without storing personally identifiable information. Your privacy is our priority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-card glass-card">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Fight Misinformation?</h2>
+                    <p class="cta-description">
+                        Join thousands of users who trust NewsVerify to keep them informed with verified, credible news.
+                    </p>
+                    <div class="cta-actions">
+                        <a href="#" class="btn-primary btn-large">
+                            Start Free Trial
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn-secondary btn-large">Schedule Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="logo-text">NewsVerify</span>
+                    </div>
+                    <p class="footer-description">
+                        AI-powered news verification on the blockchain. Fighting misinformation, one article at a time.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Browser Extension</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2026 NewsVerify. All rights reserved.
+                </p>
+                <p class="footer-tagline">
+                    Built on <a href="https://genlayer.com" target="_blank" rel="noopener">GenLayer</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

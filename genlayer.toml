@@ -1,0 +1,8 @@
+[package]
+name = "news_verification_dapp"
+version = "0.1.0"
+description = "A GenLayer Dapp for verifying news credibility using AI and Web Access"
+authors = ["GenLayer User"]
+
+[contracts]
+news_verifier = "contracts.news_verifier:NewsVerifier"
