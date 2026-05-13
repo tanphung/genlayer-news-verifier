@@ -32,8 +32,10 @@ export function GenLayerProvider({ children }: { children: ReactNode }) {
         });
     }, [address]);
 
+    const value = useMemo(() => ({ client }), [client]);
+
     return (
-        <GenLayerContext.Provider value={{ client }}>
+        <GenLayerContext.Provider value={value}>
             {children}
         </GenLayerContext.Provider>
     );
