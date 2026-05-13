@@ -205,9 +205,11 @@ export default function NewsVerifier() {
 
             <div className="app-grid">
                 <div className="app-grid-main">
-                    {loading && <VerifySkeleton />}
-                    {!loading && activeRecord && <EvidenceResult record={activeRecord} />}
-                    {!loading && !activeRecord && (
+                    {/* Output area — always stable, never unmounted by loading state.
+                        Loading indication lives in the form card (button + tx status + toasts). */}
+                    {activeRecord ? (
+                        <EvidenceResult record={activeRecord} />
+                    ) : (
                         <div className="glass-card evidence-empty">
                             <svg viewBox="0 0 24 24" width="56" height="56" fill="none" aria-hidden>
                                 <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -227,18 +229,6 @@ export default function NewsVerifier() {
                     />
                 </aside>
             </div>
-        </div>
-    );
-}
-
-function VerifySkeleton() {
-    return (
-        <div className="glass-card evidence-skeleton">
-            <div className="skeleton-line skeleton-line-lg" />
-            <div className="skeleton-line skeleton-line-md" />
-            <div className="skeleton-line skeleton-line-sm" />
-            <div className="skeleton-block" />
-            <div className="skeleton-line skeleton-line-md" />
         </div>
     );
 }

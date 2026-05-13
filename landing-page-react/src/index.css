@@ -2372,31 +2372,5 @@ section {
     max-width: 340px;
 }
 
-/* ===================================
-   VERIFY — LOADING SKELETON
-   =================================== */
-
-.evidence-skeleton {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-@keyframes shimmer {
-    0%   { background-position: -400px 0; }
-    100% { background-position: 400px 0; }
-}
-
-.skeleton-line,
-.skeleton-block {
-    border-radius: 6px;
-    background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
-    background-size: 800px 100%;
-    animation: shimmer 1.4s infinite linear;
-}
-
-.skeleton-line-lg { height: 24px; width: 70%; }
-.skeleton-line-md { height: 16px; width: 90%; }
-.skeleton-line-sm { height: 14px; width: 55%; }
-.skeleton-block    { height: 80px; width: 100%; }
+/* Skeleton CSS removed — VerifySkeleton was the flicker root cause.
+   Loading state is shown in-form (button + tx status + toasts) instead. */
