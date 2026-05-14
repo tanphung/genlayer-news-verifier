@@ -53,7 +53,12 @@ function computeRegion(url: string): string {
             pt: 'Europe', gr: 'Europe', sk: 'Europe', hr: 'Europe',
             // East Asia
             jp: 'East Asia', kr: 'East Asia', cn: 'East Asia',
-            tw: 'East Asia', hk: 'East Asia', sg: 'East Asia',
+            tw: 'East Asia', hk: 'East Asia',
+            // Southeast Asia
+            vn: 'Southeast Asia', th: 'Southeast Asia', ph: 'Southeast Asia',
+            my: 'Southeast Asia', id: 'Southeast Asia', sg: 'Southeast Asia',
+            mm: 'Southeast Asia', kh: 'Southeast Asia', la: 'Southeast Asia',
+            bn: 'Southeast Asia',
             // South Asia
             in: 'South Asia', pk: 'South Asia', bd: 'South Asia',
             lk: 'South Asia', np: 'South Asia',
@@ -136,10 +141,20 @@ function computeRegion(url: string): string {
             // ── East Asia — Korea ──
             koreaherald: 'East Asia', koreatimes: 'East Asia',
             yonhapnews: 'East Asia', chosun: 'East Asia',
-            // ── East Asia — China / HK / SG / SEA ──
-            scmp: 'East Asia', channelnewsasia: 'East Asia',
-            straitstimes: 'East Asia', todayonline: 'East Asia',
-            chinadaily: 'East Asia', globaltimes: 'East Asia',
+            // ── East Asia — China / HK ──
+            scmp: 'East Asia', chinadaily: 'East Asia', globaltimes: 'East Asia',
+            // ── Southeast Asia ──
+            vnexpress: 'Southeast Asia', tuoitre: 'Southeast Asia',
+            thanhnien: 'Southeast Asia', dantri: 'Southeast Asia',
+            vietnamnet: 'Southeast Asia', nhandan: 'Southeast Asia',
+            laodong: 'Southeast Asia', zingnews: 'Southeast Asia',
+            vov: 'Southeast Asia', vtv: 'Southeast Asia',
+            channelnewsasia: 'Southeast Asia', straitstimes: 'Southeast Asia',
+            todayonline: 'Southeast Asia', bangkokpost: 'Southeast Asia',
+            nationthailand: 'Southeast Asia', inquirer: 'Southeast Asia',
+            rappler: 'Southeast Asia', thestar: 'Southeast Asia',
+            kompas: 'Southeast Asia', detik: 'Southeast Asia',
+            tempo: 'Southeast Asia',
             // ── South Asia — India ──
             hindustantimes: 'South Asia', thehindu: 'South Asia',
             ndtv: 'South Asia', indiatoday: 'South Asia',

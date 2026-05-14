@@ -9,6 +9,7 @@ const REGIONS = [
     'North America',
     'Europe',
     'East Asia',
+    'Southeast Asia',
     'South Asia',
     'Middle East',
     'Africa',
