@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { GenLayerIcon } from './Icons';
+import ptpLogo from '../assets/ptp-logo.png';
 
 // Placeholder components - simplified versions
 export function HowItWorks() {
@@ -136,7 +136,7 @@ export function Footer() {
                 <div className="footer-content">
                     <div className="footer-column">
                         <div className="footer-logo">
-                            <GenLayerIcon className="logo-icon" style={{ width: '24px', height: '24px' }} />
+                            <img src={ptpLogo} alt="NewsVerify" style={{ width: '32px', height: '32px', objectFit: 'cover', borderRadius: '50%' }} />
                             <span className="logo-text">NewsVerify</span>
                         </div>
                         <p className="footer-description">

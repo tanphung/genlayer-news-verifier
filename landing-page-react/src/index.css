@@ -256,6 +256,10 @@ a {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-lg);
+    /* Own GPU compositing layer — prevents backdrop-filter from
+       triggering full-page repaints when wagmi polls */
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .nav-logo {

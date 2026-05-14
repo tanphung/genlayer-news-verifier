@@ -1,9 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import ptpLogo from '../assets/ptp-logo.png';
 
-export default function Navbar() {
+// memo: Navbar takes no props — parent re-renders (wagmi polling) are fully
+// ignored. Only route changes (useLocation) or local state will re-render it.
+export default memo(function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -67,4 +69,4 @@ export default function Navbar() {
             </div>
         </nav>
     );
-}
+});
