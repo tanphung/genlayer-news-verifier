@@ -1,0 +1,16 @@
+# Claude Code internal files — not part of the project
+.agent/
+.shared/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Node
+node_modules/
