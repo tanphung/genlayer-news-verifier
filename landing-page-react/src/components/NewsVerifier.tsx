@@ -81,7 +81,15 @@ export default function NewsVerifier() {
                 args: [],
             });
 
-            const result: VerificationResult = JSON.parse(rawResult as string);
+            // GenLayer AI validators may wrap JSON in markdown fences or extra text.
+            // Per GenLayer docs: extract the JSON object between first { and last }.
+            const raw = (rawResult as string).trim();
+            const first = raw.indexOf('{');
+            const last = raw.lastIndexOf('}');
+            if (first === -1 || last === -1 || last <= first) {
+                throw new Error('Contract returned invalid response: no JSON object found');
+            }
+            const result: VerificationResult = JSON.parse(raw.slice(first, last + 1));
             const record = addRecord(urlToVerify, result);
             setActiveRecord(record);
             setUrlToVerify('');
