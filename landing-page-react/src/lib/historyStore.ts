@@ -31,56 +31,141 @@ function computeVerdict(trustScore: number): Verdict {
 
 function computeRegion(url: string): string {
     try {
-        const hostname = new URL(url).hostname;
+        const hostname = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
         const parts = hostname.split('.');
-        const tld = parts[parts.length - 1].toLowerCase();
+        const tld = parts[parts.length - 1];
+
+        // ── 1. Country-code TLD (fast path) ──────────────────────────────────
         const tldMap: Record<string, string> = {
-            us: 'North America',
-            ca: 'North America',
-            mx: 'Latin America',
-            br: 'Latin America',
-            ar: 'Latin America',
-            cl: 'Latin America',
-            co: 'Latin America',
-            gb: 'Europe',
-            uk: 'Europe',
-            de: 'Europe',
-            fr: 'Europe',
-            it: 'Europe',
-            es: 'Europe',
-            nl: 'Europe',
-            pl: 'Europe',
-            se: 'Europe',
-            no: 'Europe',
-            fi: 'Europe',
-            dk: 'Europe',
-            ru: 'Europe',
-            jp: 'East Asia',
-            kr: 'East Asia',
-            cn: 'East Asia',
-            tw: 'East Asia',
-            hk: 'East Asia',
-            sg: 'East Asia',
-            in: 'South Asia',
-            pk: 'South Asia',
-            bd: 'South Asia',
-            lk: 'South Asia',
-            sa: 'Middle East',
-            ae: 'Middle East',
-            eg: 'Middle East',
-            il: 'Middle East',
-            tr: 'Middle East',
-            ir: 'Middle East',
-            ng: 'Africa',
-            za: 'Africa',
-            ke: 'Africa',
-            et: 'Africa',
-            gh: 'Africa',
-            au: 'Oceania',
-            nz: 'Oceania',
+            // North America
+            us: 'North America', ca: 'North America',
+            // Latin America
+            mx: 'Latin America', br: 'Latin America', ar: 'Latin America',
+            cl: 'Latin America', co: 'Latin America', pe: 'Latin America',
+            ve: 'Latin America', uy: 'Latin America', py: 'Latin America',
+            bo: 'Latin America', ec: 'Latin America', gt: 'Latin America',
+            // Europe
+            gb: 'Europe', uk: 'Europe', de: 'Europe', fr: 'Europe',
+            it: 'Europe', es: 'Europe', nl: 'Europe', pl: 'Europe',
+            se: 'Europe', no: 'Europe', fi: 'Europe', dk: 'Europe',
+            ru: 'Europe', ua: 'Europe', be: 'Europe', ch: 'Europe',
+            at: 'Europe', cz: 'Europe', hu: 'Europe', ro: 'Europe',
+            pt: 'Europe', gr: 'Europe', sk: 'Europe', hr: 'Europe',
+            // East Asia
+            jp: 'East Asia', kr: 'East Asia', cn: 'East Asia',
+            tw: 'East Asia', hk: 'East Asia', sg: 'East Asia',
+            // South Asia
+            in: 'South Asia', pk: 'South Asia', bd: 'South Asia',
+            lk: 'South Asia', np: 'South Asia',
+            // Middle East
+            sa: 'Middle East', ae: 'Middle East', eg: 'Middle East',
+            il: 'Middle East', tr: 'Middle East', ir: 'Middle East',
+            qa: 'Middle East', kw: 'Middle East', jo: 'Middle East',
+            lb: 'Middle East', iq: 'Middle East', bh: 'Middle East',
+            // Africa
+            ng: 'Africa', za: 'Africa', ke: 'Africa', et: 'Africa',
+            gh: 'Africa', tz: 'Africa', ug: 'Africa', ma: 'Africa',
+            cm: 'Africa', sn: 'Africa', ci: 'Africa',
+            // Oceania
+            au: 'Oceania', nz: 'Oceania',
         };
         if (tldMap[tld]) return tldMap[tld];
-        // com/net/org/io — treat as North America by default
+
+        // ── 2. Second-level domain name for generic TLDs (.com/.net/.org…) ───
+        // Use the second-to-last label, e.g. "nytimes" from "nytimes.com"
+        const sld = parts.length >= 2 ? parts[parts.length - 2] : '';
+
+        const sldMap: Record<string, string> = {
+            // ── North America — US ──
+            cnn: 'North America', foxnews: 'North America', nytimes: 'North America',
+            washingtonpost: 'North America', wsj: 'North America',
+            usatoday: 'North America', nbcnews: 'North America',
+            abcnews: 'North America', cbsnews: 'North America',
+            msnbc: 'North America', apnews: 'North America',
+            npr: 'North America', politico: 'North America',
+            thehill: 'North America', axios: 'North America',
+            bloomberg: 'North America', businessinsider: 'North America',
+            huffpost: 'North America', buzzfeed: 'North America',
+            vox: 'North America', vice: 'North America',
+            slate: 'North America', salon: 'North America',
+            newsweek: 'North America', time: 'North America',
+            forbes: 'North America', fortune: 'North America',
+            theverge: 'North America', wired: 'North America',
+            techcrunch: 'North America', engadget: 'North America',
+            gizmodo: 'North America', cnet: 'North America',
+            pcmag: 'North America', arstechnica: 'North America',
+            ign: 'North America', latimes: 'North America',
+            nypost: 'North America', breitbart: 'North America',
+            theatlantic: 'North America', newyorker: 'North America',
+            rollingstone: 'North America', thedailybeast: 'North America',
+            motherjones: 'North America', reason: 'North America',
+            nationalreview: 'North America', thenation: 'North America',
+            // ── North America — Canada ──
+            cbc: 'North America', globeandmail: 'North America',
+            nationalpost: 'North America', torontostar: 'North America',
+            // ── Europe — UK ──
+            bbc: 'Europe', theguardian: 'Europe', dailymail: 'Europe',
+            thetimes: 'Europe', telegraph: 'Europe', independent: 'Europe',
+            mirror: 'Europe', express: 'Europe', metro: 'Europe',
+            sky: 'Europe', thesun: 'Europe', eveningstandard: 'Europe',
+            inews: 'Europe', spectator: 'Europe', economist: 'Europe',
+            newstatesman: 'Europe', prospect: 'Europe',
+            // ── Europe — Germany ──
+            spiegel: 'Europe', zeit: 'Europe', focus: 'Europe',
+            bild: 'Europe', welt: 'Europe', faz: 'Europe',
+            sueddeutsche: 'Europe', stern: 'Europe', handelsblatt: 'Europe',
+            // ── Europe — France ──
+            lemonde: 'Europe', lefigaro: 'Europe', liberation: 'Europe',
+            lexpress: 'Europe', lepoint: 'Europe', leparisien: 'Europe',
+            // ── Europe — Others ──
+            corriere: 'Europe', repubblica: 'Europe', elpais: 'Europe',
+            elmundo: 'Europe', lavanguardia: 'Europe', rtve: 'Europe',
+            nos: 'Europe', nu: 'Europe', svd: 'Europe', dn: 'Europe',
+            // ── Europe — Russia ──
+            rt: 'Europe', ria: 'Europe', tass: 'Europe', interfax: 'Europe',
+            meduza: 'Europe', kommersant: 'Europe',
+            // ── Middle East ──
+            aljazeera: 'Middle East', arabnews: 'Middle East',
+            gulfnews: 'Middle East', khaleejitimes: 'Middle East',
+            alarabiya: 'Middle East', middleeasteye: 'Middle East',
+            haaretz: 'Middle East', timesofisrael: 'Middle East',
+            jpost: 'Middle East', presstv: 'Middle East',
+            // ── East Asia — Japan ──
+            nhk: 'East Asia', asahi: 'East Asia', mainichi: 'East Asia',
+            yomiuri: 'East Asia', japantimes: 'East Asia', nikkei: 'East Asia',
+            // ── East Asia — Korea ──
+            koreaherald: 'East Asia', koreatimes: 'East Asia',
+            yonhapnews: 'East Asia', chosun: 'East Asia',
+            // ── East Asia — China / HK / SG / SEA ──
+            scmp: 'East Asia', channelnewsasia: 'East Asia',
+            straitstimes: 'East Asia', todayonline: 'East Asia',
+            chinadaily: 'East Asia', globaltimes: 'East Asia',
+            // ── South Asia — India ──
+            hindustantimes: 'South Asia', thehindu: 'South Asia',
+            ndtv: 'South Asia', indiatoday: 'South Asia',
+            firstpost: 'South Asia', scroll: 'South Asia',
+            thewire: 'South Asia', livemint: 'South Asia',
+            economictimes: 'South Asia', timesofindia: 'South Asia',
+            theprint: 'South Asia', quint: 'South Asia',
+            // ── South Asia — Pakistan / Bangladesh ──
+            dawn: 'South Asia', geo: 'South Asia', arynews: 'South Asia',
+            // ── Africa ──
+            premiumtimesng: 'Africa', punchng: 'Africa',
+            vanguardngr: 'Africa', dailymaverick: 'Africa',
+            timeslive: 'Africa', businessdayng: 'Africa',
+            // ── Latin America ──
+            folha: 'Latin America', estadao: 'Latin America',
+            infobae: 'Latin America', clarin: 'Latin America',
+            lanacion: 'Latin America', eluniversal: 'Latin America',
+            // ── Oceania ──
+            smh: 'Oceania', theage: 'Oceania', heraldsun: 'Oceania',
+            couriermail: 'Oceania', nzherald: 'Oceania',
+        };
+        if (sldMap[sld]) return sldMap[sld];
+
+        // ── 3. Generic TLD fallback — most .com/.net/.org are English/NA ──────
+        if (['com', 'net', 'org', 'edu', 'io', 'co'].includes(tld)) return 'North America';
+
         return 'Other';
     } catch {
         return 'Other';

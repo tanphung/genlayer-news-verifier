@@ -24,6 +24,7 @@ export const genLayerStudionet = defineChain({
 
 export const config = getDefaultConfig({
     appName: 'NewsVerify',
+    appIcon: '/ptp-logo.png',
     projectId: import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || 'YOUR_WALLETCONNECT_PROJECT_ID',
     chains: [genLayerStudionet, mainnet, polygon, optimism, arbitrum, sepolia],
     ssr: false,

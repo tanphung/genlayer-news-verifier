@@ -5,7 +5,7 @@ import { useAccount, useSwitchChain } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { CONTRACTS } from '../config/genlayer';
 import toast, { Toaster } from 'react-hot-toast';
-import { GenLayerIcon } from './Icons';
+import ptpLogo from '../assets/ptp-logo.png';
 import EvidenceResult from './EvidenceResult';
 import VerificationHistory from './VerificationHistory';
 import TrustMap from './TrustMap';
@@ -144,7 +144,7 @@ export default function NewsVerifier() {
             <Toaster position="top-right" />
 
             <div className="app-badge">
-                <GenLayerIcon style={{ width: '20px', height: '20px' }} />
+                <img src={ptpLogo} alt="" aria-hidden style={{ width: '20px', height: '20px', objectFit: 'cover', borderRadius: '50%' }} />
                 <span>Powered by GenLayer</span>
             </div>
 

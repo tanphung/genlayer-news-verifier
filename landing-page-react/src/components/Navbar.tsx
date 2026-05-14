@@ -30,7 +30,7 @@ export default function Navbar() {
         <nav className="navbar">
             <div className="nav-container">
                 <Link to="/" className="nav-logo">
-                    <img src={ptpLogo} alt="NewsVerify" className="logo-icon" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+                    <img src={ptpLogo} alt="NewsVerify" className="logo-icon" style={{ width: '32px', height: '32px', objectFit: 'cover', borderRadius: '50%' }} />
                     <span className="logo-text">NewsVerify</span>
                 </Link>
 
