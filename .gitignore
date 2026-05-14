@@ -1,5 +1,6 @@
 # Claude Code internal files — not part of the project
 .agent/
+.agents/
 .shared/
 
 # Environment variables
