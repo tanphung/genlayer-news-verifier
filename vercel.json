@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd landing-page-react && npm install --legacy-peer-deps && npm run build",
+  "outputDirectory": "landing-page-react/dist",
+  "installCommand": "echo skip"
+}
