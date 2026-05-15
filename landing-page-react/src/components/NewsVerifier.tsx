@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useGenLayer } from '../contexts/GenLayerContext';
-import { TransactionStatus } from 'genlayer-js/types';
+import { TransactionStatus, type Hash } from 'genlayer-js/types';
 import { useAccount, useSwitchChain } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { CONTRACTS } from '../config/genlayer';
@@ -14,6 +14,22 @@ import { addRecord } from '../lib/historyStore';
 import { useHistory } from '../lib/useHistory';
 
 const STUDIONET_CHAIN_ID = 61999;
+const PENDING_TX_KEY = 'nv_pending_tx';
+
+// ── Pending transaction persistence ──────────────────────────────────────────
+// Saves txHash + url to localStorage so verification survives page navigation.
+function savePendingTx(hash: string, url: string) {
+    localStorage.setItem(PENDING_TX_KEY, JSON.stringify({ hash, url }));
+}
+function loadPendingTx(): { hash: string; url: string } | null {
+    try {
+        const raw = localStorage.getItem(PENDING_TX_KEY);
+        return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+}
+function clearPendingTx() {
+    localStorage.removeItem(PENDING_TX_KEY);
+}
 
 export default function NewsVerifier() {
     const { client } = useGenLayer();
@@ -27,6 +43,7 @@ export default function NewsVerifier() {
     const history = useHistory();
 
     const isOnStudionet = chainId === STUDIONET_CHAIN_ID;
+    const resumedRef = useRef(false); // prevent double-resume
 
     // Surface latest verification if none manually selected
     useEffect(() => {
@@ -35,6 +52,78 @@ export default function NewsVerifier() {
         }
     }, [history, activeRecord]);
 
+    // ── Shared: wait for consensus → read result → save ─────────────────────
+    const waitAndSaveResult = useCallback(async (
+        txHashValue: string,
+        url: string,
+        signal: { cancelled: boolean },
+    ) => {
+        await client!.waitForTransactionReceipt({
+            hash: txHashValue as Hash,
+            status: TransactionStatus.FINALIZED,
+            interval: 10_000,
+            retries: 120,
+        });
+
+        if (signal.cancelled) return;
+        toast.loading('Consensus reached. Reading result…', { id: 'verify' });
+
+        const rawResult = await client!.readContract({
+            address: CONTRACTS.NEWS_VERIFIER as `0x${string}`,
+            functionName: 'get_verification_result',
+            args: [],
+        });
+
+        if (signal.cancelled) return;
+
+        // GenLayer AI validators may wrap JSON in markdown fences or extra text.
+        // Per GenLayer docs: extract the JSON object between first { and last }.
+        const raw = (rawResult as string).trim();
+        const first = raw.indexOf('{');
+        const last = raw.lastIndexOf('}');
+        if (first === -1 || last === -1 || last <= first) {
+            throw new Error('Contract returned invalid response: no JSON object found');
+        }
+        const result: VerificationResult = JSON.parse(raw.slice(first, last + 1));
+        const record = addRecord(url, result);
+        setActiveRecord(record);
+        setTxHash(null);
+        clearPendingTx();
+        toast.success('Verification complete!', { id: 'verify' });
+    }, [client]);
+
+    // ── Resume pending tx on mount (user navigated away and came back) ──────
+    useEffect(() => {
+        if (!client || resumedRef.current) return;
+        const pending = loadPendingTx();
+        if (!pending) return;
+
+        resumedRef.current = true;
+        const signal = { cancelled: false };
+
+        setLoading(true);
+        setTxHash(pending.hash);
+        toast.loading('Resuming verification. Waiting for AI consensus…', { id: 'verify' });
+
+        (async () => {
+            try {
+                await waitAndSaveResult(pending.hash, pending.url, signal);
+            } catch (err) {
+                if (signal.cancelled) return;
+                const errorMsg = err instanceof Error ? err.message : 'Verification failed';
+                setVerifyError(errorMsg);
+                toast.error('Verification failed. Please try again.', { id: 'verify' });
+                clearPendingTx();
+                console.error('Resume verification failed:', err);
+            } finally {
+                if (!signal.cancelled) setLoading(false);
+            }
+        })();
+
+        return () => { signal.cancelled = true; };
+    }, [client, waitAndSaveResult]);
+
+    // ── Submit new verification ─────────────────────────────────────────────
     const handleVerify = useCallback(async () => {
         if (!client || !urlToVerify) {
             toast.error('Please enter a URL');
@@ -51,59 +140,35 @@ export default function NewsVerifier() {
         setTxHash(null);
         toast.loading('Waiting for MetaMask signature…', { id: 'verify' });
 
+        const submittedUrl = urlToVerify;
+
         try {
             // 1. Submit — MetaMask popup appears here (window.ethereum signs)
             const hash = await client.writeContract({
                 address: CONTRACTS.NEWS_VERIFIER as `0x${string}`,
                 functionName: 'verify_news',
-                args: [urlToVerify],
+                args: [submittedUrl],
                 value: 0n,
             });
 
             setTxHash(hash as string);
+            setUrlToVerify('');
+            savePendingTx(hash as string, submittedUrl);
             console.log('Transaction submitted:', hash);
             toast.loading('Transaction submitted. Waiting for AI consensus…', { id: 'verify' });
 
-            // 2. Wait for finalization — AI consensus can take several minutes
-            await client.waitForTransactionReceipt({
-                hash,
-                status: TransactionStatus.FINALIZED,
-                interval: 10_000,
-                retries: 120, // 120 × 10s = 20 minutes max
-            });
-
-            toast.loading('Consensus reached. Reading result…', { id: 'verify' });
-
-            // 3. Read result — get_verification_result() takes no args
-            const rawResult = await client.readContract({
-                address: CONTRACTS.NEWS_VERIFIER as `0x${string}`,
-                functionName: 'get_verification_result',
-                args: [],
-            });
-
-            // GenLayer AI validators may wrap JSON in markdown fences or extra text.
-            // Per GenLayer docs: extract the JSON object between first { and last }.
-            const raw = (rawResult as string).trim();
-            const first = raw.indexOf('{');
-            const last = raw.lastIndexOf('}');
-            if (first === -1 || last === -1 || last <= first) {
-                throw new Error('Contract returned invalid response: no JSON object found');
-            }
-            const result: VerificationResult = JSON.parse(raw.slice(first, last + 1));
-            const record = addRecord(urlToVerify, result);
-            setActiveRecord(record);
-            setUrlToVerify('');
-            setTxHash(null);
-            toast.success('Verification complete!', { id: 'verify' });
+            // 2. Wait + read + save (shared logic)
+            await waitAndSaveResult(hash as string, submittedUrl, { cancelled: false });
         } catch (err) {
             const errorMsg = err instanceof Error ? err.message : 'Verification failed';
             setVerifyError(errorMsg);
             toast.error('Verification failed. Please try again.', { id: 'verify' });
+            clearPendingTx();
             console.error('Verification failed:', err);
         } finally {
             setLoading(false);
         }
-    }, [client, urlToVerify, isOnStudionet]);
+    }, [client, urlToVerify, isOnStudionet, waitAndSaveResult]);
 
     // ── Not connected ──────────────────────────────────────────────────────────
     if (!walletConnected) {
