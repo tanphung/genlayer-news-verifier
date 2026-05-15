@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-declare global {
-    interface Window { ethereum?: { request: (args: { method: string; params?: any[] }) => Promise<any> }; }
-}
-
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useGenLayer } from '../contexts/GenLayerContext';
 import { TransactionStatus, type Hash } from 'genlayer-js/types';
@@ -148,14 +143,7 @@ export default function NewsVerifier() {
         const submittedUrl = urlToVerify;
 
         try {
-            // 0. Ensure MetaMask has authorized this dapp for eth_sendTransaction.
-            //    genlayer-js calls window.ethereum directly (not through wagmi),
-            //    so new Chrome profiles may not have granted permission yet.
-            if (window.ethereum) {
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-            }
-
-            // 1. Submit — MetaMask popup appears here (window.ethereum signs)
+            // 1. Submit — wallet popup appears here (provider from wagmi connector signs)
             const hash = await client.writeContract({
                 address: CONTRACTS.NEWS_VERIFIER as `0x${string}`,
                 functionName: 'verify_news',
